@@ -1,0 +1,21 @@
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[[redirects]]
+  from = "/"
+  to = "/chhatrapati-shivaji-maharaj"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/shivaji"
+  to = "/chhatrapati-shivaji-maharaj"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/shivaji-maharaj"
+  to = "/chhatrapati-shivaji-maharaj"
+  status = 301
+  force = true
