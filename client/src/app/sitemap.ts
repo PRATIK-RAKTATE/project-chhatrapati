@@ -1,32 +1,12 @@
 import type { MetadataRoute } from "next";
-
-const SITE_URL = "https://truehistoryofshivaji.in";
+import { allPages } from "@/data/pages";
+import { absoluteUrl } from "@/lib/seo";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return [
-    {
-      url: `${SITE_URL}/`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 1,
-    },
-    {
-      url: `${SITE_URL}/chhatrapati-shivaji-maharaj`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.9,
-    },
-    {
-      url: `${SITE_URL}/blog`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.6,
-    },
-    {
-      url: `${SITE_URL}/syllabus`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.7,
-    },
-  ];
+  return allPages.map((page) => ({
+    url: absoluteUrl(page.slug),
+    lastModified: new Date(),
+    changeFrequency: page.kind === "pillar" ? "weekly" : "monthly",
+    priority: page.kind === "pillar" ? 1 : page.kind === "cluster" ? 0.85 : 0.72
+  }));
 }
